@@ -1,0 +1,8 @@
+INSERT INTO `colours` (`breed`, `colour`) VALUES ('Abyssinian', 'Tawny');
+		INSERT INTO `colours` (`breed`, `colour`) VALUES ('Abyssinian', 'Cinnamon');
+		INSERT INTO `colours` (`breed`, `colour`) VALUES ('Abyssinian', 'Blue');
+		INSERT INTO `colours` (`breed`, `colour`) VALUES ('Abyssinian', 'Fawn');
+		INSERT INTO `colours` (`breed`, `colour`) VALUES ('Abyssinian', 'Black Silver');
+		INSERT INTO `colours` (`breed`, `colour`) VALUES ('Abyssinian', 'Cinnamon Silver');
+		INSERT INTO `colours` (`breed`, `colour`) VALUES ('Abyssinian', 'Blue Silver');
+		INSERT INTO `colours` (`breed`, `colour`) VALUES ('Abyssinian', 'Fawn Silver');

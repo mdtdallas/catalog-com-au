@@ -1,0 +1,180 @@
+    <!--==========================================
+=            All Category Section            =
+===========================================-->
+
+    <section class=" section">
+        <!-- Container Start -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section title -->
+                    <div class="section-title">
+                        <h2>All Categories</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, provident!</p>
+                    </div>
+                    <div class="row">
+                        <!-- Category list -->
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-12 col-12">
+                            <div class="category-block">
+                                <div class="header">
+                                    <i class="fa fa-laptop icon-bg-1"></i>
+                                    <h4>Long Hair Kitten</h4>
+                                </div>
+                                <ul class="category-list">
+                                    <li><a href="category">Laptops <span>93</span></a></li>
+                                    <li><a href="category">Iphone <span>233</span></a></li>
+                                    <li><a href="category">Microsoft <span>183</span></a></li>
+                                    <li><a href="category">Monitors <span>343</span></a></li>
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+                        <!-- Category list -->
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-12 col-12">
+                            <div class="category-block">
+                                <div class="header">
+                                    <i class="fa fa-apple icon-bg-2"></i>
+                                    <h4>Short Hair Kitten</h4>
+                                </div>
+                                <ul class="category-list">
+                                    <li><a href="category">Cafe <span>393</span></a></li>
+                                    <li><a href="category">Fast food <span>23</span></a></li>
+                                    <li><a href="category">Restaurants <span>13</span></a></li>
+                                    <li><a href="category">Food Track<span>43</span></a></li>
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+                        <!-- Category list -->
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-12 col-12">
+                            <div class="category-block">
+                                <div class="header">
+                                    <i class="fa fa-home icon-bg-3"></i>
+                                    <h4>Long Hair Entire</h4>
+                                </div>
+                                <ul class="category-list">
+                                    <li><a href="category">Farms <span>93</span></a></li>
+                                    <li><a href="category">Gym <span>23</span></a></li>
+                                    <li><a href="category">Hospitals <span>83</span></a></li>
+                                    <li><a href="category">Parolurs <span>33</span></a></li>
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+                        <!-- Category list -->
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-12 col-12">
+                            <div class="category-block">
+                                <div class="header">
+                                    <i class="fa fa-shopping-basket icon-bg-4"></i>
+                                    <h4>Short Hair Entire</h4>
+                                </div>
+                                <ul class="category-list">
+                                    <li><a href="category">Mens Wears <span>53</span></a></li>
+                                    <li><a href="category">Accessories <span>212</span></a></li>
+                                    <li><a href="category">Kids Wears <span>133</span></a></li>
+                                    <li><a href="category">It & Software <span>143</span></a></li>
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+                        <!-- Category list -->
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-12 col-12">
+                            <div class="category-block">
+                                <div class="header">
+                                    <i class="fa fa-briefcase icon-bg-5"></i>
+                                    <h4>Long Hair Desexed</h4>
+                                </div>
+                                <ul class="category-list">
+                                    <li><a href="category">It Jobs <span>93</span></a></li>
+                                    <li><a href="category">Cleaning & Washing <span>233</span></a></li>
+                                    <li><a href="category">Management <span>183</span></a></li>
+                                    <li><a href="category">Voluntary Works <span>343</span></a></li>
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+                        <!-- Category list -->
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-12 col-12">
+                            <div class="category-block">
+                                <div class="header">
+                                    <i class="fa fa-car icon-bg-6"></i>
+                                    <h4>Short Hair Desexed</h4>
+                                </div>
+                                <ul class="category-list">
+                                    <li><a href="category">Bus <span>193</span></a></li>
+                                    <li><a href="category">Cars <span>23</span></a></li>
+                                    <li><a href="category">Motobike <span>33</span></a></li>
+                                    <li><a href="category">Rent a car <span>73</span></a></li>
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+                        <!-- Category list -->
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-12 col-12">
+                            <div class="category-block">
+                                <div class="header">
+                                    <i class="fa fa-paw icon-bg-7"></i>
+                                    <h4>Companion</h4>
+                                </div>
+                                <ul class="category-list">
+                                    <li><a href="category">Cats <span>65</span></a></li>
+                                    <li><a href="category">Dogs <span>23</span></a></li>
+                                    <li><a href="category">Birds <span>113</span></a></li>
+                                    <li><a href="category">Others <span>43</span></a></li>
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+                        <!-- Category list -->
+                        <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-12 col-12">
+                            <div class="category-block">
+
+                                <div class="header">
+                                    <i class="fa fa-laptop icon-bg-8"></i>
+                                    <h4>British Short Hair</h4>
+                                </div>
+                                <ul class="category-list">
+                                    <li><a href="category">Cleaning <span>93</span></a></li>
+                                    <li><a href="category">Car Washing <span>233</span></a></li>
+                                    <li><a href="category">Clothing <span>183</span></a></li>
+                                    <li><a href="category">Business <span>343</span></a></li>
+                                </ul>
+                            </div>
+                        </div> <!-- /Category List -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container End -->
+    </section>
+
+
+    ***************************************************************************************************************************************************
+    ***************************************************************************************************************************************************
+
+
+    <div class="col-lg-6 col-md-6">
+                                                    <!-- Change Password -->
+                                                    <div class="widget change-password">
+                                                        <h3 class="widget-header user">Edit Password</h3>
+                                                        <form method="">
+                                                            <!-- Current Password -->
+                                                            <div class="form-group">
+                                                                <label for="current-password">Current Password</label>
+                                                                <input type="password" class="form-control" id="current-password">
+                                                            </div>
+                                                            <!-- New Password -->
+                                                            <div class="form-group">
+                                                                <label for="new-password">New Password</label>
+                                                                <input type="password" class="form-control" id="new-password">
+                                                            </div>
+                                                            <!-- Confirm New Password -->
+                                                            <div class="form-group">
+                                                                <label for="confirm-password">Confirm New Password</label>
+                                                                <input type="password" class="form-control" id="confirm-password">
+                                                            </div>
+                                                            <!-- Submit Button -->
+                                                            <button class="btn btn-transparent shadow-sm">Change Password</button>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+
+    ********************************************************************************************************************************************************
+    ********************************************************************************************************************************************************
