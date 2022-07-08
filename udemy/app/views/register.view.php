@@ -25,13 +25,13 @@
                             <fieldset class="p-4">
                                 <div class="row">
                                     <div class='col-6 m-0'>
-                                        <input type="text" placeholder="First Name*" value="<?= set_value('firstname') ?>" class="border p-3 w-100 my-2 <?=!empty($errors['firstname']) ? 'border-danger':'border';?>" value="<?= set_value('firstname') ?>" name="firstname" required>
+                                        <input type="text" placeholder="First Name*" class="border p-3 w-100 my-2 <?=!empty($errors['firstname']) ? 'border-danger':'border';?>" value="<?= set_value('firstname') ?>" name="firstname" required>
                                         <?php if (!empty($errors['firstname'])) : ?>
                                             <div class="text-danger"><?= $errors['firstname'] ?></div>
                                         <?php endif; ?>
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" placeholder="Last Name*" value="<?= set_value('lastname') ?>" class="border p-3 w-100 my-2 <?=!empty($errors['lastname']) ? 'border-danger':'';?>" value="<?= set_value('lastname') ?>" name="lastname" required>
+                                        <input type="text" placeholder="Last Name*"  class="border p-3 w-100 my-2 <?=!empty($errors['lastname']) ? 'border-danger':'';?>" value="<?= set_value('lastname') ?>" name="lastname" required>
                                         <?php if (!empty($errors['lastname'])) : ?>
                                             <div class="text-danger"><?= $errors['lastname'] ?></div>
                                         <?php endif; ?>

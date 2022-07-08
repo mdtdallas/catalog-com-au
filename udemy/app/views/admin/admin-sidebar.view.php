@@ -21,7 +21,7 @@
 
     <li class="nav-item active">
         <a class="nav-link" href="<?= ROOT ?>/">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+        <i class="fa-solid fa-house"></i>
             <span>Home Page</span></a>
     </li>
 
@@ -40,12 +40,12 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="<?= ROOT ?>/admin/councils">
-                <i class="fa-solid fa-ticket"></i>
+            <i class="fa-solid fa-people-group"></i>
                 <span>Councils</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="<?= ROOT ?>/admin/sponsors">
-                <i class="fa-solid fa-ticket"></i>
+            <i class="fa-solid fa-hand-holding-dollar"></i>
                 <span>Sponsors</span></a>
         </li>
         <li class="nav-item active">
@@ -71,7 +71,7 @@
 
     <li class="nav-item active">
         <a class="nav-link" href='<?= ROOT ?>/admin/profile/'>
-            <i class="fa-solid fa-ticket"></i>
+        <i class="fa-solid fa-id-card"></i>
             <span>Profile</span></a>
     </li>
 
@@ -83,7 +83,7 @@
 
     <li class="nav-item active">
         <a class="nav-link" href="<?= ROOT ?>/logout">
-            <i class="fa-solid fa-ticket"></i>
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span>Logout</span></a>
     </li>
 

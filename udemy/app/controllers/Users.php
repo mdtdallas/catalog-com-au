@@ -47,7 +47,7 @@ class Users extends Controller
                     }
                 }
                 $user->update($id, $_POST);
-
+                redirect('admin/users');
                 
             }
             if (empty($user->errors)) {

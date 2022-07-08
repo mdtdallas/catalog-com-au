@@ -22,6 +22,7 @@ class Contact extends Controller
             $_POST['created'] = Date('d m Y');
             
             $message->insert($_POST);
+            redirect('home');
         }
 
         $data ['title'] = "Contact Page";

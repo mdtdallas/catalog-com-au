@@ -1,6 +1,6 @@
 <?php
 
-// Home Class
+// Admin Dashboard Class
 
 class Admin extends Controller
 {
@@ -12,11 +12,14 @@ class Admin extends Controller
         }
         $message = new Message();
         $booking = new Booking();
+
         $data['messages'] = $message->where(['active' => 'yes']);
         $data['bookings'] = $booking->where(['active' => 'yes']);
+        $data['total_messages'] = count($data['messages']);
+        $data['total_bookings'] = count($data['bookings']);
         $data['title'] = "Dashboard";
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['id'];
             show($_POST);
             $data['id'] = $_POST['active'];
@@ -41,6 +44,7 @@ class Admin extends Controller
         $data['roles'] = $role->findAll();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $row) {
+
             $folder = 'uploads/images/';
             if (!file_exists($folder)) {
                 mkdir($folder, 0777, true);
@@ -49,6 +53,7 @@ class Admin extends Controller
             }
 
             if ($user->edit_admin_validate($_POST, $id)) {
+
                 $allowed = ['image/png', 'image/jpeg', 'image/jpg'];
                 if (!empty($_FILES['image']['name'])) {
                     if ($_FILES['image']['error'] == 0) {
@@ -73,6 +78,7 @@ class Admin extends Controller
             if (empty($user->errors)) {
 
                 message('Profile saved successfully');
+                redirect('admin/users');
             } else {
                 $arr['message'] = 'Please correct these errors';
                 $arr['errors'] = $user->errors;
@@ -144,6 +150,7 @@ class Admin extends Controller
                     $show->insert($_POST);
                     $add['R1LHK'] = null;
                     $result->insert($add);
+                    redirect('admin/shows');
 
                     $row = $show->first(['user_id' => $user_id, 'published' => 'off']);
 
@@ -195,7 +202,9 @@ class Admin extends Controller
                                 $destination = $folder . time() . $_FILES['image']['name'];
                                 move_uploaded_file($_FILES['image']['tmp_name'], $destination);
                                 resize_image($destination);
-
+                                if (file_exists($row->image)) {
+                                    unlink($row->image);
+                                }
                                 $_POST['image'] = $destination;
                             } else {
                                 $cat->errors['image'] = 'Image Files Only';
@@ -211,6 +220,9 @@ class Admin extends Controller
                                 $destination = $pdfFolder . time() . $_FILES['covidPath']['name'];
                                 move_uploaded_file($_FILES['covidPath']['tmp_name'], $destination);
                                 $_POST['covidPath'] = $destination;
+                                if (file_exists($row->covidPath)) {
+                                    unlink($row->covidPath);
+                                }
                             } else {
                                 $cat->errors['covidPath'] = 'Image Files Only';
                             }
@@ -225,6 +237,9 @@ class Admin extends Controller
                                 $destination = $pdfFolder . time() . $_FILES['rulesPath']['name'];
                                 move_uploaded_file($_FILES['rulesPath']['tmp_name'], $destination);
                                 $_POST['rulesPath'] = $destination;
+                                if (file_exists($row->rulesPath)) {
+                                    unlink($row->rulesPath);
+                                }
                             } else {
                                 $cat->errors['rulesPath'] = 'Image Files Only';
                             }
@@ -235,6 +250,9 @@ class Admin extends Controller
                     $_POST['updated_on'] = date('d-m-Y H:i:s');
                     $_POST['userEmail'] = $email;
                     $show->update($id, $_POST);
+                    message('Show has been updated!');
+                    redirect('admin/shows');
+                    
                 }
                 if (empty($show->errors)) {
                     message('Show Updated!');
@@ -253,6 +271,7 @@ class Admin extends Controller
                 if ($result->validate($_POST)) {
                     $_POST['showID'] = $id;
                     $result->update($id, $_POST);
+                    redirect('admin/shows');
                 }
             }
         } else {
@@ -336,7 +355,7 @@ class Admin extends Controller
         $breed = new Breed();
         $user_id = Auth::getId();
         $email = Auth::getEmail();
-        $data['row'] = $cat->first(['id' => $id]);
+        $data['row'] = $row = $cat->first(['id' => $id]);
         $data['rows'] = $cat->findAll();
 
 
@@ -420,7 +439,7 @@ class Admin extends Controller
 
                     $cat->insert($_POST);
                     message('Cat has been added');
-                    //redirect('admin/cats');
+                    redirect('admin/cats');
 
                 }
                 $data['errros'] = $cat->errors;
@@ -434,6 +453,7 @@ class Admin extends Controller
             $data['sexes'] = $sex->findAll();
             $data['types'] = $type->findAll();
             $data['levels'] = $level->findAll();
+
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -458,6 +478,9 @@ class Admin extends Controller
                                 move_uploaded_file($_FILES['image']['tmp_name'], $destination);
                                 resize_image($destination);
                                 $_POST['image'] = $destination;
+                                if (file_exists($row->image)) {
+                                    unlink($row->image);
+                                }
                             } else {
                                 $cat->errors['image'] = 'Images files only!';
                             }
@@ -474,6 +497,9 @@ class Admin extends Controller
                                 $pdfdestinationPed = $pdfFolder . time() . $_FILES['pedigreePath']['name'];
                                 move_uploaded_file($_FILES['pedigreePath']['tmp_name'], $pdfdestinationPed);
                                 $_POST['pedigreePath'] = $pdfdestinationPed;
+                                if (file_exists($row->pedigreePath)) {
+                                    unlink($row->pedigreePath);
+                                }
                             } else {
                                 $cat->errors['pedigreePath'] = 'Image Files Only';
                             }
@@ -488,6 +514,9 @@ class Admin extends Controller
                                 $pdfdestinationVac = $pdfFolder . time() . $_FILES['vaccinationPath']['name'];
                                 move_uploaded_file($_FILES['vaccinationPath']['tmp_name'], $pdfdestinationVac);
                                 $_POST['vaccinationPath'] = $pdfdestinationVac;
+                                if (file_exists($row->vaccinationPath)) {
+                                    unlink($row->vaccinationPath);
+                                }
                             } else {
                                 $cat->errors['vaccinationPath'] = 'Image Files Only';
                             }
@@ -524,13 +553,36 @@ class Admin extends Controller
         $data['id'] = $id;
         $data['action'] = $action;
         $council = new Council();
-        $data['rows'] = $council->findAll();
-
+        
+        
         if ($action == 'add') {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $folder = 'uploads/images/';
+                if (!file_exists($folder)) {
+                    mkdir($folder, 0777, true);
+                    file_put_contents($folder . 'index.php', '<?php // silence');
+                    file_put_contents('uploads/index.php', '<?php // silence');
+                }
+                $allowed = ['image/png', 'image/jpeg', 'image/jpg'];
                 if ($council->validate($_POST)) {
+                    if (!empty($_FILES['councilImagePath']['name'])) {
+                        if ($_FILES['councilImagePath']['error'] == 0) {
+                            if (in_array($_FILES['councilImagePath']['type'], $allowed)) {
+                                $destination = $folder . time() . $_FILES['councilImagePath']['name'];
+                                move_uploaded_file($_FILES['councilImagePath']['tmp_name'], $destination);
+                                resize_image($destination);
+                                $_POST['councilImagePath'] = $destination;
+                            } else {
+                                $council->errors['councilImagePath'] = 'Images Files Only';
+                            }
+                        } else {
+                            $council->errors['councilImagePath'] = 'Upload Failed';
+                        }
+                    }
                     $_POST['user_id'] = Auth::getId();
+                    show($_POST);
                     $council->insert($_POST);
+                    redirect('admin/councils');
                     message('Cat Council Created');
                 } else {
                     $data['errors'] = $council->errors;
@@ -540,19 +592,48 @@ class Admin extends Controller
 
 
         if ($action == 'edit') {
-            $data['row'] = $row = $council->where(['id' => $id]);
+            $data['row'] = $row = $council->first(['id' => $id]);
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && $row) {
+                $folder = 'uploads/images/';
+                if (!file_exists($folder)) {
+                    mkdir($folder, 0777, true);
+                    file_put_contents($folder . 'index.php', '<?php // silence');
+                    file_put_contents('uploads/index.php', '<?php // silence');
+                }
+                $allowed = ['image/png', 'image/jpeg', 'image/jpg'];
+
                 if ($council->edit_validate($_POST)) {
+                    if (!empty($_FILES['councilImagePath']['name'])) {
+                        if ($_FILES['councilImagePath']['error'] == 0) {
+                            if (in_array($_FILES['councilImagePath']['type'], $allowed)) {
+                                $destination = $folder . time() . $_FILES['councilImagePath']['name'];
+                                move_uploaded_file($_FILES['councilImagePath']['tmp_name'], $destination);
+                                resize_image($destination);
+                                $_POST['councilImagePath'] = $destination;
+                                if (file_exists($row->councilImagePath)) {
+                                    unlink($row->councilImagePath);
+                                }
+                            } else {
+                                $council->errors['councilImagePath'] = 'Images Files Only';
+                            }
+                        } else {
+                            $council->errors['councilImagePath'] = 'Upload Failed';
+                        }
+                    }
+
                     $_POST['user_id'] = Auth::getId();
-                    $council->update($_POST, $id);
+                    show($_POST);
+                    $council->update($id, $_POST);
                     message('Cat Council Updated');
                 } else {
                     $data['errors'] = $council->errors;
                 }
             }
         }
+        show($data);
         $data['errors'] = $council->errors;
+        $data['rows'] = $council->where(['disabled' => 'no']);
         $this->view('admin/councils', $data);
     }
 
@@ -574,10 +655,34 @@ class Admin extends Controller
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                if ($sponsor->validate($_POST)) {
+                $folder = 'uploads/images/';
+                if (!file_exists($folder)) {
+                    mkdir($folder, 0777, true);
+                    file_put_contents($folder . 'index.php', '<?php // silence');
+                    file_put_contents('uploads/index.php', '<?php // silence');
+                }
 
+
+                if ($sponsor->validate($_POST)) {
+                    $allowed = ['image/png', 'image/jpeg', 'image/jpg'];
+                    if (!empty($_FILES['sponsor_image']['name'])) {
+                        if ($_FILES['sponsor_image']['error'] == 0) {
+                            if (in_array($_FILES['sponsor_image']['type'], $allowed)) {
+                                $destination = $folder . time() . $_FILES['sponsor_image']['name'];
+                                move_uploaded_file($_FILES['sponsor_image']['tmp_name'], $destination);
+                                resize_image($destination);
+                                $_POST['sponsor_image'] = $destination;
+                            } else {
+                                $sponsor->errors['sponsor_image'] = 'Images Only!';
+                            }
+                        } else {
+                            $sponsor->errors['sponsor_image'] = 'Upload Failed!';
+                        }
+                    }
                     $_POST['user_id'] = Auth::getId();
+                    show($_POST);
                     $sponsor->insert($_POST);
+                    redirect('admin/sponsors');
                     message('Sponsor Created');
                 } else {
 
@@ -588,15 +693,42 @@ class Admin extends Controller
 
         if ($action == 'edit') {
 
-            $data['row'] = $sponsor->where(['id' => $id]);
+            $data['row'] = $row = $sponsor->where(['id' => $id]);
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                if ($sponsor->validate($_POST)) {
+                $folder = 'uploads/images/';
+                if (!file_exists($folder)) {
+                    mkdir($folder, 0777, true);
+                    file_put_contents($folder . 'index.php', '<?php // silence');
+                    file_put_contents('uploads/index.php', '<?php // silence');
+                }
 
+
+                if ($sponsor->validate($_POST)) {
+                    $allowed = ['image/png', 'image/jpeg', 'image/jpg'];
+                    if (!empty($_FILES['sponsor_image']['name'])) {
+                        if ($_FILES['sponsor_image']['error'] == 0) {
+                            if (in_array($_FILES['sponsor_image']['type'], $allowed)) {
+                                $destination = $folder . time() . $_FILES['sponsor_image']['name'];
+                                move_uploaded_file($_FILES['sponsor_image']['tmp_name'], $destination);
+                                resize_image($destination);
+                                $_POST['sponsor_image'] = $destination;
+                                if (file_exists($row->sponsor_image)) {
+                                    unlink($row->sponsor_image);
+                                }
+                            } else {
+                                $sponsor->errors['sponsor_image'] = 'Images Only!';
+                            }
+                        } else {
+                            $sponsor->errors['sponsor_image'] = 'Upload Failed!';
+                        }
+                    }
                     $_POST['user_id'] = Auth::getId();
-                    $sponsor->insert($_POST);
+                    show($_POST);
+                    $sponsor->update($id, $_POST);
                     message('Sponsor Created');
+                    redirect('admin/sponsors');
                 } else {
 
                     $data['errors'] = $sponsor->errors;
@@ -623,12 +755,12 @@ class Admin extends Controller
             $data['row'] = $row = $message->first(['id' => $id]);
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                
+
                 $_POST['responded'] = 'yes';
                 $_POST['active'] = 'no';
                 $_POST['user_id'] = $user_id;
 
-                
+
                 $email = $row->email;
                 $headers = 'Return-Path: mdtdallas@hotmail.com' . "\r\n";
                 $headers .= 'From: Sender <mdtdallas@hotmail.com>' . "\r\n";
@@ -636,8 +768,9 @@ class Admin extends Controller
                 mail($email, 'Cat A Log - Contact Form Reply', $_POST['reply'], $headers);
 
                 message('Reply Sent!');
-                
+
                 $message->update($id, $_POST);
+                redirect('admin/messages');
             }
 
             $this->view('admin/messages', $data);

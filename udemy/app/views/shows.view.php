@@ -50,13 +50,13 @@
                             <div class="content mt-5 pt-5">
                                 <ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false">Show Info</a>
+                                        <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false">Show Info</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-judges" role="tab" aria-controls="pills-judges" aria-selected="false">Judges</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Show Details</a>
+                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">Show Details</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Papers</a>
@@ -247,12 +247,28 @@
                                                     <td><?= $row[0]->entryTicketCount ?></td>
                                                 </tr>
                                                 <tr>
+                                                    <td>Catalogue Price</td>
+                                                    <td>$<?= $row[0]->cataloguePrice ?></td>
+                                                </tr>
+                                                <tr>
                                                     <td>Small Cage Price</td>
                                                     <td>$<?= $row[0]->smallCagePrice ?></td>
                                                 </tr>
                                                 <tr>
+                                                    <td>Large Cage Price</td>
+                                                    <td>$<?= $row[0]->largeCagePrice ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Raffle Ticket Price</td>
+                                                    <td>$<?= $row[0]->rafflePrice ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Raffle Tickets Available</td>
+                                                    <td><?= $row[0]->raffleTicketCount ?></td>
+                                                </tr>
+                                                <tr>
                                                     <td>Added</td>
-                                                    <td><?= $row[0]->created ?></td>
+                                                    <td><?= get_date($row[0]->created) ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>State</td>
@@ -265,6 +281,10 @@
                                                 <tr>
                                                     <td>Show Sponsor</td>
                                                     <td><?= $row[0]->sponsor_row->sponsor ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Additional Entry</td>
+                                                    <td>$<?= $row[0]->secondEntryTicketPrice ?></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -316,7 +336,7 @@
                             <div class="widget user text-center">
                             
                                 <h2 class="text-center">Sponsor</h2>
-                                <img class="rounded-circle img-fluid mb-5 px-5" src="<?= $row[0]->sponsor_row->sponsor_image ?? null ?>" alt="">
+                                <img class="rounded-circle img-fluid mb-5 px-5" src="<?= get_image($row[0]->sponsor_row->sponsor_image) ?>" alt="">
                                 <h4><a href=""><?= $row[0]->sponsor_row->sponsor ?></a></h4>
                                 <p class="member-time">Member Since <?= $row[0]->sponsor_row->created ?></p>
                                 <a href="<?= ROOT ?>/shows">See all shows</a>
@@ -327,7 +347,7 @@
                             <!-- CAT COUNCIL -->
                             <div class="widget map text-center">
                                 <h4 class="text-center p-3">Cat Council</h4>
-                                <img class="rounded-circle img-fluid mb-5 px-5" src="<?= $row[0]->council_row->councilImagePath ?? null ?>" alt="">
+                                <img class="rounded-circle img-fluid mb-5 px-5" src="<?= get_image($row[0]->council_row->councilImagePath) ?>" alt="">
                                 <p><?= $row[0]->council_row->council ?></p>
 
                                 <p><?= $row[0]->council_row->councilName ?></p>

@@ -2,8 +2,8 @@
 
 // App info
 
-define('APP_NAME', 'PHP Framework');
-define('APP_DESC', 'PHP Server Framework');
+define('APP_NAME', 'Cat A Log');
+define('APP_DESC', 'Cat Shows Australia');
 
 
 // Database config
@@ -24,8 +24,10 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 {
     //live
     define('HOSTNAME', 'localhost');
-    define('DBNAME', 'udemy');
-    define('DBUSER', 'root');
-    define('DBPASS', 'root');
+    define('DBNAME', 'caca75768_catalog');
+    define('DBUSER', 'caca75768_john');
+    define('DBPASS', 'HSJR7gp1%h7M');
     define('DBDRIVER', 'mysql');
+
+    define('ROOT', 'https://cat-a-log.com.au');
 }

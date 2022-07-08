@@ -7,7 +7,7 @@ class Shows extends Controller
     public function index($id = null)
     {
         $show = new Show();
-        $data['rows'] = $show->findAll();
+        $data['rows'] = $show->futureShows();
         $data ['title'] = "Shows Page";
         $data['row'] = $show->where(['id' => $id]);
 

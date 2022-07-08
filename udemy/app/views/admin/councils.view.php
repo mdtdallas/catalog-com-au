@@ -139,22 +139,23 @@
                             <form method="POST" enctype="multipart/form-data" class="row mx-4" id="create-council-form">
                                 <legend class="h1 text-center mt-3">Edit Cat Council</legend>
                                 <div class="mb-3">
+                                    <img src="<?=get_image($row->councilImagePath)?>" alt="" class="image-preview">
                                     <label for="councilImagePath" class="form-label">Council Image</label>
-                                    <input class="form-control" type="file" id="councilImagePath" name="councilImagePath">
+                                    <input class="form-control" type="file" id="councilImagePath" name="councilImagePath" >
                                     <?php if (!empty($errors['councilImagePath'])) : ?>
                                         <div class="text-danger js-error-councilImagePath"><?= $errors['councilImagePath'] ?></div>
                                     <?php endif; ?>
                                 </div>
                                 <div class="mb-3">
                                     <label for="council" class="form-label">Council Abbreviation</label>
-                                    <input type="text" class="form-control" id="council" name="council" value="<?= set_value('council', $row[0]->council) ?>" required1>
+                                    <input type="text" class="form-control" id="council" name="council" value="<?= set_value('council', $row->council) ?>" required1>
                                     <?php if (!empty($errors['council'])) : ?>
                                         <div class="text-danger js-error-council"><?= $errors['council'] ?></div>
                                     <?php endif; ?>
                                 </div>
                                 <div class="mb-3">
                                     <label for="councilName" class="form-label">Council Name</label>
-                                    <input type="text" class="form-control" id="councilName" name="councilName" value="<?= set_value('councilName', $row[0]->councilName) ?>" required>
+                                    <input type="text" class="form-control" id="councilName" name="councilName" value="<?= set_value('councilName', $row->councilName) ?>" required>
                                     <?php if (!empty($errors['councilName'])) : ?>
                                         <div class="text-danger js-error-councilName"><?= $errors['councilName'] ?></div>
                                     <?php endif; ?>
@@ -162,7 +163,7 @@
                                 <legend class="h2">Postage Address</legend>
                                 <div class="mb-3">
                                     <label for="street" class="form-label">Address</label>
-                                    <input type="text" class="form-control" name="street" value="<?= set_value('street', $row[0]->street) ?>">
+                                    <input type="text" class="form-control" name="street" value="<?= set_value('street', $row->street) ?>">
                                     <?php if (!empty($errors['street'])) : ?>
                                         <div class="text-danger js-error-street"><?= $errors['street'] ?></div>
                                     <?php endif; ?>
@@ -170,21 +171,21 @@
                                 <div class="row align-items-start">
                                     <div class="col">
                                         <label for="suburb" class="form-label">Suburb</label>
-                                        <input type="text" class="form-control" name="suburb" value="<?= set_value('suburb', $row[0]->suburb) ?>">
+                                        <input type="text" class="form-control" name="suburb" value="<?= set_value('suburb', $row->suburb) ?>">
                                         <?php if (!empty($errors['suburb'])) : ?>
                                         <div class="text-danger js-error-suburb"><?= $errors['suburb'] ?></div>
                                     <?php endif; ?>
                                     </div>
                                     <div class="col">
                                         <label for="state" class="form-label">State</label>
-                                        <input type="text" class="form-control" name="state" value="<?= set_value('state', $row[0]->state) ?>">
+                                        <input type="text" class="form-control" name="state" value="<?= set_value('state', $row->state) ?>">
                                         <?php if (!empty($errors['state'])) : ?>
                                         <div class="text-danger js-error-state"><?= $errors['state'] ?></div>
                                     <?php endif; ?>
                                     </div>
                                     <div class="col">
                                         <label for="postcode" class="form-label">Post Code</label>
-                                        <input type="text" class="form-control" name="postcode" value="<?= set_value('postcode', $row[0]->postcode) ?>">
+                                        <input type="text" class="form-control" name="postcode" value="<?= set_value('postcode', $row->postcode) ?>">
                                         <?php if (!empty($errors['postcode'])) : ?>
                                         <div class="text-danger js-error-postcode"><?= $errors['postcode'] ?></div>
                                     <?php endif; ?>
@@ -194,21 +195,21 @@
                                 <div class="row align-items-start">
                                     <div class="col">
                                         <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" class="form-control" name="councilPhone" value="<?= set_value('councilPhone', $row[0]->councilPhone) ?>">
+                                        <input type="text" class="form-control" name="councilPhone" value="<?= set_value('councilPhone', $row->councilPhone) ?>">
                                         <?php if (!empty($errors['councilPhone'])) : ?>
                                         <div class="text-danger js-error-councilPhone"><?= $errors['councilPhone'] ?></div>
                                     <?php endif; ?>
                                     </div>
                                     <div class="col">
                                         <label for="email" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control" name="councilEmail" value="<?= set_value('councilEmail', $row[0]->councilEmail) ?>">
+                                        <input type="email" class="form-control" name="councilEmail" value="<?= set_value('councilEmail', $row->councilEmail) ?>">
                                         <?php if (!empty($errors['councilEmail'])) : ?>
                                         <div class="text-danger js-error-councilEmail"><?= $errors['councilEmail'] ?></div>
                                     <?php endif; ?>
                                     </div>
                                     <div class="col">
                                         <label for="url" class="form-label">Website</label>
-                                        <input type="url" class="form-control" name="councilURL" value="<?= set_value('councilURL', $row[0]->councilURL) ?>">
+                                        <input type="url" class="form-control" name="councilURL" value="<?= set_value('councilURL', $row->councilURL) ?>">
                                         <?php if (!empty($errors['councilURL'])) : ?>
                                         <div class="text-danger js-error-councilURL"><?= $errors['councilURL'] ?></div>
                                     <?php endif; ?>
@@ -275,14 +276,14 @@
                                                 <?php foreach ($rows as $row) : ?>
                                                     <tr>
                                                         <td><?= $row->id ?></td>
-                                                        <td><?= esc($row->council) ?></td>
-                                                        <td><?= ($row->councilName) ?></td>
-                                                        <td><img src="<?= esc($row->councilImagePath) ?>" alt="" width="90"></td>
+                                                        <td><?= esc($row->council ?? 'Unknown') ?></td>
+                                                        <td><?= ($row->councilName ?? 'Unknown') ?></td>
+                                                        <td><img src="<?= get_image($row->councilImagePath) ?>" alt="" width="90"></td>
                                                         <td><?= esc($row->state) ?></td>
-                                                        <td><?= esc($row->councilPhone) ?></td>
-                                                        <td><?= esc($row->councilEmail) ?></td>
-                                                        <td><?= esc($row->user_id) ?></td>
-                                                        <td><?= esc($row->dateCreated) ?></td>
+                                                        <td><?= esc($row->councilPhone ?? 'Unknown') ?></td>
+                                                        <td><?= esc($row->councilEmail ?? 'Unknown') ?></td>
+                                                        <td><?= esc($row->user_row->name ?? 'Unknown') ?></td>
+                                                        <td><?= esc($row->dateCreated ?? 'Unknown') ?></td>
 
                                                         <td>
                                                             <a href="<?= ROOT ?>/admin/councils/edit/<?= $row->id ?>">

@@ -513,8 +513,7 @@
                                                             </li>
                                                             <li class="list-inline-item"><a href="<?= ROOT ?>/cats/views/<?= $row->id ?>"><i class="fa-solid fa-cat p-1"></i><?= $row->sex ?></a></li>
                                                         </ul>
-                                                        <p class="pr-5">This is the page, consectetur adipisicing elit.
-                                                            Explicabo, aliquam!</p>
+                                                        <p class="pr-5"><?=$row->bio?></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 align-self-center">

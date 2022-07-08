@@ -13,22 +13,19 @@ class Login extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // validate
-            $row = $user->first([
-                'email' => $_POST['email']
-            ]);
+            $row = $user->first(['email' => $_POST['email']]);
 
-            if($row){
-                
-				if(password_verify($_POST['password'], $row->password))
-				{
-					//authenticate
-					Auth::authenticate($row);
+            if ($row) {
 
-					redirect('home');
-				}
-			}
+                if (password_verify($_POST['password'], $row->password)) {
+                    //authenticate
+                    Auth::authenticate($row);
 
-			$data['errors']['email'] = "Wrong email or password";
+                    redirect('home');
+                }
+            }
+
+            $data['errors']['email'] = "Wrong email or password";
         }
 
         $this->view('login', $data);

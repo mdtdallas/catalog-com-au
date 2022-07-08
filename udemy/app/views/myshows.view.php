@@ -75,8 +75,8 @@
                             <div class="ad-listing-list mt-20">
                                 <div class="row p-lg-3 p-sm-5 p-4">
                                     <div class="col-lg-4 align-self-center">
-                                        <a href="">
-                                            <img src="<?= ROOT ?>/<?= $row->show_row->image ?>" class="img-fluid" alt="">
+                                        <a href="<?=ROOT?>/shows/<?=$row->id?>">
+                                            <img src="<?=get_image($row->show_row->image) ?>" class="img-fluid" alt="">
                                         </a>
                                     </div>
                                     <div class="col-lg-8">

@@ -121,7 +121,7 @@
                                                 <a href="<?=ROOT?>/shows/<?=$row->id?>"><i class="fa fa-folder-open-o"></i><?= $row->location?></a>
                                             </li>
                                             <li class="list-inline-item">
-                                                <a href="#"><i class="fa fa-calendar"></i><?= $row->showDate?></a>
+                                                <a href="#"><i class="fa fa-calendar"></i><?=get_date($row->showDate)?></a>
                                             </li>
                                         </ul>
                                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>

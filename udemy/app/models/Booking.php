@@ -30,6 +30,7 @@ class Booking extends Model
         ,'smallCage'
         ,'largeCage'
         ,'second_cat'
+        ,'secondCageSize'
     ];
     public function validate($data)
     {

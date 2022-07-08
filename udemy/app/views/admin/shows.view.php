@@ -605,7 +605,7 @@
                                                     </div>
                                                     <div class="col">
                                                         <label for="raffleTicketCount" class="form-label">Total Tickets</label>
-                                                        <input type="number" class="form-control" max="1000" name="raffleTicketCount" value="<?= esc($row->raffleTicketCount) ?>">
+                                                        <input type="number" class="form-control" max="10000" name="raffleTicketCount" value="<?= esc($row->raffleTicketCount) ?>">
                                                     </div>
                                                 </div>
                                             </div>

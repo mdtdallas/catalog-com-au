@@ -7,8 +7,14 @@ class Council extends Model
     public $errors = [];
     protected $table = "councils";
 
+    protected $afterSelect = [
+        'get_user',
+        
+    ];
+    protected $beforeUpdate = [];
+
     protected $allowedColumns = [
-        'council', 'councilName', 'councilImagePath', 'street', 'suburb', 'state', 'postcode', 'councilPhone', 'councilEmail', 'councilURL', 'dateCreated', 'user_id'
+        'council', 'councilName', 'councilImagePath', 'street', 'suburb', 'state', 'postcode', 'councilPhone', 'councilEmail', 'councilURL', 'dateCreated', 'user_id', 'disabled'
     ];
     public function validate($data)
     {
@@ -73,17 +79,11 @@ class Council extends Model
 
         if (empty($data['council'])) {
             $this->errors['council'] = 'council\'s name is required';
-        } else
-        if (preg_match('/^[a-zA-Z \']+$/', trim($data['council']))) {
-            $this->errors['council'] = 'Letters and spaces only';
-        }
+        } 
 
         if (empty($data['councilName'])) {
             $this->errors['councilName'] = 'council\'s full name is required';
-        } else
-        if (preg_match('/^[a-zA-Z \']+$/', trim($data['councilName']))) {
-            $this->errors['councilName'] = 'Letters and spaces only';
-        }
+        } 
 
         if (empty($data['street'])) {
             $this->errors['street'] = 'Street is required';
@@ -129,5 +129,24 @@ class Council extends Model
 
         return false;
     }
+
+    protected function get_user($rows)
+    {
+        $db = new Database();
+        if(!empty($rows[0]->user_id))
+        {
+            
+            foreach($rows as $key => $row)
+            {
+                $query = 'SELECT * FROM users where id = :id limit 1';
+                $user = $db->query($query,['id'=>$row->user_id]);
+                if(!empty($user)) {
+                    $user[0]->name = $user[0]->firstname . ' ' . $user[0]->lastname;
+                    $rows[$key]->user_row = $user[0]; 
+                }
+            }
+        }
+        return $rows;
+    } 
 
 }

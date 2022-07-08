@@ -103,6 +103,7 @@ class Cats extends Controller
                     $_POST['email'] = $email;
 
                     $cat->insert($_POST);
+                    redirect('admin/cats');
                 }
                 if (empty($cat->errors)) {
                     message('Cat saved successfully');
@@ -203,6 +204,7 @@ class Cats extends Controller
                         $_POST['email'] = $email;
                         $cat->update($id, $_POST);
                         message('Cat Updated Successfully');
+                        redirect('cats/list');
                     } else {
                         $data['errors'] = $cat->errors;
                     }

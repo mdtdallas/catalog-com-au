@@ -37,6 +37,7 @@
                         <!--==================================
 =            User Profile            =
 ===================================-->
+
                         <section class="user-profile section">
                             <div class="container-fluid">
                                 <div class="row">
@@ -46,7 +47,7 @@
                                             <div class="widget user">
                                                 <!-- User Image -->
                                                 <div class="image d-flex justify-content-center">
-                                                    <img src="<?= ROOT ?>/<?= $row->image ?>" alt="" class="" height="150" width="150">
+                                                    <img src="<?= get_image($row->image) ?>" alt="" class="" height="150" width="150">
                                                 </div>
                                                 <!-- User Name -->
                                                 <h5 class="text-center"><?= esc($row->firstname) ?> <?= esc($row->lastname) ?></h5>
@@ -56,14 +57,14 @@
                                                 <h5 class="text-center"><?= esc($row->phone) ?> </h5>
                                             </div>
                                             <!-- Dashboard Links -->
-                                            <div class="widget dashboard-links">
+                                            <!-- <div class="widget dashboard-links">
                                                 <ul>
                                                     <li><a class="my-1 d-inline-block" href="">Savings Dashboard</a></li>
                                                     <li><a class="my-1 d-inline-block" href="">Saved Offer <span>(5)</span></a></li>
                                                     <li><a class="my-1 d-inline-block" href="">Favourite Stores <span>(3)</span></a></li>
                                                     <li><a class="my-1 d-inline-block" href="">Recommended</a></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div class="col-md-10 offset-md-1 col-lg-9 offset-lg-0">
@@ -177,6 +178,7 @@
 
                                                 </div>
                                             </div>
+                                            <?php if(Auth::is_admin()) : ?>
                                             <div class="col-lg-6 col-md-6">
                                                 <!-- Change Password -->
                                                 <div class="widget change-password">
@@ -185,24 +187,25 @@
                                                         <!-- Current Password -->
                                                         <div class="form-group">
                                                             <label for="current-password">Current Password</label>
-                                                            <input type="password" class="form-control" id="current-password">
+                                                            <input type="password" class="form-control" name="current-password">
                                                         </div>
                                                         <!-- New Password -->
                                                         <div class="form-group">
                                                             <label for="new-password">New Password</label>
-                                                            <input type="password" class="form-control" id="new-password">
+                                                            <input type="password" class="form-control" name="new-password">
                                                         </div>
                                                         <!-- Confirm New Password -->
                                                         <div class="form-group">
                                                             <label for="confirm-password">Confirm New Password</label>
-                                                            <input type="password" class="form-control" id="confirm-password">
+                                                            <input type="password" class="form-control" name="confirm-password">
                                                         </div>
                                                         <!-- Submit Button -->
-                                                        <button class="btn btn-transparent shadow-sm">Change Password</button>
+                                                        <button type="submit" class="btn btn-transparent shadow-sm">Change Password</button>
 
                                                     </form>
                                                 </div>
                                             </div>
+                                            <?php endif; ?>
 
                                         </div>
                                     </div>

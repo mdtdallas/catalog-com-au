@@ -87,9 +87,9 @@ class User extends Model
             $this->errors['email'] = 'An email is required';
         }
 
-        if (empty($data['role'])) {
-            $this->errors['role'] = 'A role is required';
-        }
+        // if (empty($data['role'])) {
+        //     $this->errors['role'] = 'A role is required';
+        // }
 
         if (empty($data['phone'])) {
             $this->errors['phone'] = 'A phone number is required';

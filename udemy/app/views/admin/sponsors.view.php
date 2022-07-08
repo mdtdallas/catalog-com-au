@@ -154,7 +154,7 @@
                                                     <tr>
                                                         <td><?= $row->id ?></td>
                                                         <td><?= esc($row->sponsor) ?></td>
-                                                        <td><img src="<?= esc($row->sponsor_image) ?>" alt="" width="90"></td>
+                                                        <td><img src="<?= get_image($row->sponsor_image) ?>" alt="" width="90"></td>
                                                         <td><?= esc($row->sponsor_url) ?></td>
                                                         <td>
                                                             <a href="<?= ROOT ?>/admin/sponsors/edit/<?= $row->id ?>">

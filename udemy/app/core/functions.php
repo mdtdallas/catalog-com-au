@@ -29,7 +29,7 @@ function set_value($key, $default = '')
 
 function get_date($date)
 {
-	return date('jS M, Y', intval($date));
+	return date("jS F Y",strtotime($date));
 }
 
 function get_image($file)
