@@ -36,20 +36,27 @@ class Booking extends Model
     {
         $this->errors = [];
 
-        if (empty($data['show_id'])) {
-            $this->errors['show_id'] = 'A show_id is required';
-        }
-
-        if (empty($data['email'])) {
-            $this->errors['email'] = 'An email is required';
-        }
-
-        if (empty($data['user_id'])) {
-            $this->errors['user_id'] = 'A user_id is required';
-        }
-
         if (empty($data['cat_id'])) {
-            $this->errors['cat_id'] = 'A cat_id is required';
+            $this->errors['cat_id'] = 'Please select a cat';
+        }
+
+        if (empty($data['firstCageSize'])) {
+            $this->errors['firstCageSize'] = 'A cage size is required';
+        }
+
+        if ($data['second_cat'] == 'on') {
+
+            if(empty($data['second_cat_id'])) {
+                $this->errors['second_cat_id'] = 'Please select second cat';
+            }
+            if (empty($data['secondCageSize'])) {
+                $this->errors['secondCageSize'] = 'Please select cage size';
+                
+            }
+            if ($data['cat_id'] = $data['second_cat_id']) {
+                $this->errors['second_cat_id'] = 'Please select different cat';
+            }
+            
         }
 
         if (empty($this->errors)) {

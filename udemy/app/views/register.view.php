@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <input type="phone" placeholder="Phone*" maxlength="10" class="border p-3 w-100 my-2 <?=!empty($errors['phone']) ? 'border-danger':'';?>" value="<?= set_value('phone') ?>" value="<?= set_value('phone') ?>" name="phone" required>
+                                    <input type="phone" placeholder="Phone*" maxlength="10" class="border p-3 w-100 my-2 <?=!empty($errors['phone']) ? 'border-danger':'';?>" " value="<?= set_value('phone') ?>" name="phone" required>
                                     <?php if (!empty($errors['phone'])) : ?>
                                         <div class="text-danger"><?= $errors['phone'] ?></div>
                                     <?php endif; ?>
@@ -50,10 +50,10 @@
                                     <?php endif; ?>
                                 </div>
                                 <div class="col-12">
-                                    <input type="password" placeholder="Password*" class="border p-3 w-100 my-2 <?=!empty($errors['password']) ? 'border-danger':'';?>" value="<?= set_value('password') ?>" value="<?= set_value('password') ?>" name="password" required>
+                                    <input type="password" placeholder="Password*" class="border p-3 w-100 my-2 <?=!empty($errors['password']) ? 'border-danger':'';?>" value="<?= set_value('password') ?>" name="password" required>
                                 </div>
                                 <div class="col-12">
-                                    <input type="password" placeholder="Confirm Password*" class="border p-3 w-100 my-2 <?=!empty($errors['password']) ? 'border-danger':'';?>" value="<?= set_value('password') ?>" value="<?= set_value('confirm') ?>" name="confirm" required>
+                                    <input type="password" placeholder="Confirm Password*" class="border p-3 w-100 my-2 <?=!empty($errors['password']) ? 'border-danger':'';?>" value="<?= set_value('confirm') ?>" name="confirm" required>
                                     <?php if (!empty($errors['password'])) : ?>
                                         <div class="text-danger"><?= $errors['password'] ?></div>
                                     <?php endif; ?>

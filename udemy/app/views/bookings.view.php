@@ -23,7 +23,7 @@
     <!--=====================================================================
     =                            Main Content Area                          =
     =======================================================================-->
-
+    
     <div class="container rounded shadow-sm mt-3 mb-3">
         <div class="pb-3">
 
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <input type="checkbox" id="entryQty" onchange="subTotalEntry()" required>
+                        <input type="checkbox" id="entryQty" onchange="subTotalEntry()" name="entryQty" value="<?= set_value('entryQty') ?>" required>
                     </div>
 
                     <div class="col">
@@ -69,8 +69,8 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label for="cat" class="form-label">Select Cat</label>
-                        <select name="cat_id" id="firstCat" class="form-select" required>
+                        <label for="cat" class="form-label mr-3">Select Cat</label>
+                        <select name="cat_id" id="firstCat" class="form-select">
                             <option value="">Select Cat...</option>
                             <?php if ($rows) : ?>
                                 <?php foreach ($rows as $ro) : ?>
@@ -78,14 +78,20 @@
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </select>
+                        <?php if (!empty($errors['cat_id'])) : ?>
+                            <div class="text-danger"><?= $errors['cat_id'] ?></div>
+                        <?php endif; ?>
                     </div>
                     <div class="col">
-                        <label for="firstCageSize">Select Cage Size</label>
-                        <select name="firstCageSize" id="firstCageSize" onchange="subTotalEntry()" required>
+                        <label for="firstCageSize" class="form-label mr-3">Select Cage Size</label>
+                        <select name="firstCageSize" id="firstCageSize" onchange="subTotalEntry()">
                             <option value=""> Select... </option>
                             <option value="small">Small $<?= $row->smallCagePrice ?></option>
-                            <option value="large">Small $<?= $row->largeCagePrice ?></option>
+                            <option value="large">Large $<?= $row->largeCagePrice ?></option>
                         </select>
+                        <?php if (!empty($errors['firstCageSize'])) : ?>
+                            <div class="text-danger"><?= $errors['firstCageSize'] ?></div>
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -113,10 +119,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="row my-3 d-none secondCat" id="secondCat">
+                <div class="row my-3 secondCat" id="secondCat">
 
                     <div class="col">
-                        <label for="cat" class="form-label ">Select Cat</label>
+                        <label for="cat" class="form-label mr-3">Select Second Cat</label>
                         <select name="second_cat_id" id="extraCat" class="form-select">
                             <option value="">Select Cat...</option>
                             <?php if ($rows) : ?>
@@ -125,61 +131,28 @@
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </select>
+                        <?php if (!empty($errors['second_cat_id'])) : ?>
+                            <div class="text-danger"><?= $errors['second_cat_id'] ?></div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="col">
-                        <label for="secondEntryCage">Select Cage Size</label>
+                        <label for="secondEntryCage" class="form-label mr-3">Select Second Cage Size</label>
                         <select name="secondCageSize" id="secondCageSize" onchange="subTotalSecondEntry()">
                             <option value="">Select...</option>
                             <option value="small">Small $<?= $row->smallCagePrice ?></option>
                             <option value="large">Large $<?= $row->largeCagePrice ?></option>
                         </select>
+                        <?php if (!empty($errors['secondCageSize'])) : ?>
+                            <div class="text-danger"><?= $errors['secondCageSize'] ?></div>
+                        <?php endif; ?>
                     </div>
                 </div>
-                <!-- <div class="row my-3">
-                    <div class="col">
-                        Small Cage
-                    </div>
-                    <div class="col"> -->
+                
                 <h4 id="small-cage" hidden><?= $row->smallCagePrice ?></h4>
-                <!-- </div>
-                    <div class="col">
-                        <input type="checkbox" id="smCage" name="smallCage" onchange="subTotalSmCage()">
-                    </div>
-
-                    <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                <label for="subTotal1" class="form-label">Total</label>
-                            </div>
-                            <div class="col">
-                                <h4 id="smCageTotal"></h4>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="row my-3" id="largeCageRow">
-                    <div class="col">
-                        Large Cage
-                    </div>
-                    <div class="col"> -->
+                
                 <h4 id="large-cage" hidden><?= $row->largeCagePrice ?></h4>
-                <!-- </div>
-                    <div class="col">
-                        <input type="checkbox" id="lrgCage" name="largeCage" onchange="subTotalLargeCage()">
-                    </div> -->
-
-                <!-- <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                <label for="subTotal1" class="form-label">Total</label>
-                            </div>
-                            <div class="col">
-                                <h4 id="largeCageTotal"></h4>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+                
                 <div class="row my-3">
                     <div class="col">
                         Catalogue
@@ -247,7 +220,7 @@
                 </div>
                 <div class="row align-items-center">
                     <div class="col">
-                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="secondCatRequired()">
+                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Check Out
                         </button>
                     </div>
@@ -338,17 +311,18 @@
         let catalogueTotal = document.getElementById('catalogueTotal').innerHTML;
         let raffleTotal = document.getElementById('raffleTotal').innerHTML;
         let grandTotal = document.getElementById('grandTotal');
-        grandTotal.innerHTML = entryTotal*1 + secondEntryTotal*1 + catalogueTotal*1 + raffleTotal*1;
+        grandTotal.innerHTML = entryTotal * 1 + secondEntryTotal * 1 + catalogueTotal * 1 + raffleTotal * 1;
     }
 
     function secondCat() {
         let on = document.getElementById('qty2').checked;
         if (on) {
             document.getElementById("secondCat").classList.remove('d-none');
-            document.getElementById("extraCat").setAttribute("required", "");
-            document.getElementById("secondCageSize").setAttribute("required", "");
+            document.getElementById("extraCat").removeAttribute("disabled");
+            document.getElementById("secondCageSize").removeAttribute("disabled");
+            //document.getElementById("secondCageSize").setAttribute("required", "");
         } else {
-            document.getElementById("secondCat").classList.add('d-none');
+            document.getElementById("secondCat").addAttribute("disabled");
         }
     }
 
@@ -359,7 +333,7 @@
         if (checked && !secondCat) {
             alert('Please select second cat & cage size - The page will now reload for security reasons');
         } else if (firstCat == secondCat) {
-            alert('Cannot enter the same cat twice')
+            alert('Cannot enter the same cat twice');
         }
     }
 </script>
